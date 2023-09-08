@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, html {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* > *{
+    font-family: 'Poppins', sans-serif;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.w-custom-width {
+  width: 740px; /* You can adjust the width value to your desired size */
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.flag-custom-width {
+  margin-left: 380px;
+  margin-top: 5px; /* You can adjust the width value to your desired size */
+}
+.nav-custom-width {
+  margin-right: 320px; /* You can adjust the width value to your desired size */
+}
+.custom-radio {
+  width: 1.2rem; /* Adjust the size as needed */
+  height: 1.2rem; /* Adjust the size as needed */
+}
+.custom-radio:checked + .custom-label {
+  background-color: #126EBE;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.icon-lg {
+  font-size: 24px;
+  cursor: pointer; 
+  transition: color 0.3s;/* Adjust the size as needed */
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hover:hover svg path {
+  fill: #126EBE;
+}
+.icon-lg:hover {
+  color: rgb(18, 110, 190); /* Change the color to your desired value on hover */
+}
+.icon-box:hover {
+  background-color: rgb(255, 212, 58);
+}
+.button-hover-effect:hover {
+  color: blue; /* Change the text color on hover */
+  background-color: #E5F3FF; /* Change the background color on hover */
+  border-color: #1E40AF; /* Change the border color on hover */
+  /* Add any other styles you want to apply on hover */
+}
+/* CSS */
+button:hover .bg-blue-500 {
+  transform: scale-x-100;
 }
