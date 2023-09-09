@@ -9,7 +9,7 @@ const Search = () => {
         <div className="focus:border-blue-700 focus:ring-2 focus:ring-blue-200">
           <input
             type="text"
-            className="rounded-full w-custom-width m-2 py-2 px-4 pl-10 outline-none" // Add pl-10 for left padding
+            className="rounded-full w-custom-width m-2 py-2 px-4 pl-10 outline-none"
             placeholder="Search 26,233 icons..."
             style={{
               backgroundImage: `url('data:image/svg+xml,${encodeURIComponent(searchIcon)}')`,
