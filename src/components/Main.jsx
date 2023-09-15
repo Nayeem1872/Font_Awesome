@@ -39,8 +39,9 @@ const Main = () => {
     if (activeCategories.length === 0) {
       return true; // No active categories, show all icons
     }
-    return activeCategories.includes(icon.category);
+    return activeCategories.includes(icon.category) || !activeCategories.length;
   });
+  
 
   return (
     <>
@@ -48,6 +49,7 @@ const Main = () => {
         sendDataToParent={dataFromChild}
         setIconSize={setIconSize}
         setIconSize1={toggleIconSize}
+        selectedIcons={selectedIcons} // Pass selectedIcons as a prop
       />
 
       <div className="w-full bg-gray-200">

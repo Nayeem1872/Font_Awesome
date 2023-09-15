@@ -54,3 +54,7 @@ body, html {
 button:hover .bg-blue-500 {
   transform: scale-x-100;
 }
+
+.button-active svg path {
+  fill: #126EBE;
+}

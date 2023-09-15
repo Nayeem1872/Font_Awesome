@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiFillAppstore, AiOutlineUnorderedList } from "react-icons/ai";
 import { IoAppsSharp } from "react-icons/io5";
 
-const Csbf = (props) => {
-  // const [iconSize, setIconSize] = useState({ height: 40, width: 40 });
-  const handleChange = (e) => {
-    const data = e;
+const Csbf = (props ) => {
+
+  const [active, setActive] = useState([])
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
+  const handleChange = (category) => {
+    // Check if the category is already active
+    if (active.includes(category)) {
+      // Category is already active, so deactivate it
+      const updatedActive = active.filter((c) => c !== category);
+      setActive(updatedActive);
+    } else {
+      // Category is not active, so activate it
+      setActive([...active, category]);
+    }
+  
+    const data = category;
     props.sendDataToParent(data);
-  };
-  const handleSizeChange = (e) => {
-    const data = e;
-    console.log(data);
-    props.setIconSize({ height: e.height, width: e.width });
+    props.setIconSize({ height: 40, width: 40 });
     props.setIconSize1();
   };
 
@@ -19,8 +28,12 @@ const Csbf = (props) => {
     <div className="container mx-auto items-center flex flex-col md:flex-row justify-between p-2 mt-12 mb-[-19.5px]">
       <div className="flex flex-wrap md:space-x-2">
         <button
-          className="group bg-white text-black py-2 px-4 rounded-lg flex flex-col items-center transition duration-300 ease-in-out mb-3 relative w-32"
-          onClick={() => handleChange("animals")}
+          className={`group bg-white text-black py-2 px-4 rounded-lg flex flex-col items-center transition duration-300 ease-in-out mb-3 relative w-32 ${
+            active.includes("Camping")
+              ? "text-blue-500"
+              : ""
+          }`}
+          onClick={() => handleChange("Camping", props.selectedIcons)}
         >
           <div className="flex hover">
             <div className="">
@@ -70,14 +83,18 @@ const Csbf = (props) => {
             </div>
           </div>
 
-          <span className="text-sm mb-3 cursor-pointer group-hover:text-blue-500">
+          <span className={`text-sm mb-3 cursor-pointer group-hover:text-blue-500 `}>
             Classic
           </span>
           <span className="h-1 w-full bg-blue-500 absolute bottom-0 left-0 transition duration-300 ease-in-out opacity-0 group-hover:opacity-100"></span>
         </button>
 
         <button
-          className="group bg-white text-black py-2 px-4 rounded-lg flex flex-col items-center transition duration-300 ease-in-out mb-3 relative w-32"
+          className={`group bg-white text-black py-2 px-4 rounded-lg flex flex-col items-center transition duration-300 ease-in-out mb-3 relative w-32 ${
+            active.includes("Business")
+              ? "text-blue-500"
+              : ""
+          } `}
           onClick={() => handleChange("Business")}
         >
           <div className="flex hover">
@@ -135,8 +152,12 @@ const Csbf = (props) => {
         </button>
 
         <button
-          className="group bg-white text-black py-2 px-4 rounded-lg flex flex-col items-center transition duration-300 ease-in-out mb-3 relative w-32"
-          onClick={() => handleChange("Camping")}
+          className={`group bg-white text-black py-2 px-4 rounded-lg flex flex-col items-center transition duration-300 ease-in-out mb-3 relative w-32 ${
+            active.includes("Brand")
+              ? "text-blue-500"
+              : ""
+          } `}
+          onClick={() => handleChange("Brand")}
         >
           <span className="text-4xl text-blue-500 group-hover:text-blue-700">
             <div className="text-4xl mb-4 hover">
@@ -156,9 +177,15 @@ const Csbf = (props) => {
         </button>
 
         <button
-          className="group bg-white text-black py-2 px-4 rounded-lg flex flex-col items-center transition duration-300 ease-in-out mb-3 relative w-32"
-          onClick={() => handleChange("Staff")}
+           className={`group bg-white text-black py-2 px-4 rounded-lg flex flex-col items-center transition duration-300 ease-in-out mb-3 relative w-32 ${
+            active.includes("Staff") ? "text-blue-500 bg-blue-400" : ""
+          } ${isButtonActive ? "button-active" : ""}`}
+          onClick={() => {
+            handleChange("Staff", props.selectedIcons);
+            setIsButtonActive(!isButtonActive); // Toggle the active state
+          }}
         >
+        
           <span className="text-4xl text-blue-500 group-hover:text-blue-700">
             <div className="text-4xl mb-4 hover">
               <svg
@@ -173,7 +200,12 @@ const Csbf = (props) => {
           <span className="text-sm mb-3 cursor-pointer group-hover:text-blue-500">
             Free
           </span>
-          <span className="h-1 w-full bg-blue-500 absolute bottom-0 left-0 transition duration-300 ease-in-out opacity-0 group-hover:opacity-100"></span>
+          <span
+  className={`h-1 w-full bg-blue-500 absolute bottom-0 left-0 transition duration-300 ease-in-out opacity-0 group-hover:opacity-100 ${
+    active.includes("Staff") ? "bg-blue-500 opacity-100" : ""
+  }`}
+></span>
+
         </button>
       </div>
 
